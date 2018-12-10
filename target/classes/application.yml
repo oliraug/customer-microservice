@@ -1,0 +1,124 @@
+
+#Configuring Eureka Servers
+
+server:
+  port: 8761  # Indicates the default PORT where this service will be started
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false   # telling the server not to register himself in the service
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+#Configuring Eureka Clients
+
+spring:
+  application:
+    name: spring-cloud-eureka-client
+server:
+  port: 0
+eureka:
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 3
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+    
+
+  # custom attribute for the actuator info endpoint
+info:
+  app:
+    name: olify-customer-service
+    
+# give the application a name
+spring:
+  application:
+    name: olifycustomer-service
+
+# disable actuator security for endpoints 
+management:
+  security:
+    enabled: false
+
+# custom logging settings
+  logging:
+  level:
+      - ".=info"
+      - "com.olify=debug"
+      - "org.springframework=info"
+#configuring Zuul server
+info:
+	component: Zuul Server
+# Spring properties
+spring:
+	application:
+		name: zuul-server # Service registers under this name
+endpoints:
+	restart:
+		enabled: true
+	shutdown:
+		enabled: true
+	health:
+		sensitive: false
+
+# Configuring Hystrix Dashboard properties
+spring:
+	application:
+		name: dashboard-server
+endpoints:
+	restart:
+		enabled: true
+	shutdown:
+		enabled: true
+server:
+	port: 7979
+
+zuul:
+	ignoredServices: "*"
+	routes:
+		olifycustomerapi:
+		path: / olifycustomerapi/**
+		serviceId: customer-service
+		stripPrefix: true
+server:
+	port: 8765
+	
+#Configuring Turbine Server
+spring:
+	application:
+		name: turbine-serverserver:
+server
+	port: 8989
+management:
+	port: 8990
+PREFIX:
+endpoints:
+	restart:
+		enabled: true
+	shutdown:
+		enabled: true
+		
+logging:
+	level:
+		root: WARN
+		com.netflix.discovery: 'OFF'
+
+#Configuring spring mobile
+server:
+  port: ${PORT:8081}
+
+spring:
+  mobile:
+    devicedelegatingviewresolver:
+      enabled: true
+      enable-fallback: true
+      mobile-prefix: /mobile/
+      # mobile-suffix: .mob
+      normal-prefix: /
+      # normal-suffix: .nor
+      tablet-prefix: /tablet/
+      # tablet-suffix: .tab

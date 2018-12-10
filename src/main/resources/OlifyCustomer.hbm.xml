@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD X.X//EN"
+"http://hibernate.sourceforge.net/hibernate-mappingX.X.dtd">
+
+<hibernate-mapping>
+	<class="OlifyCustomer" table="olify_customers">
+		<id name="customer_id" type="long" column="cust_id">
+			<generator class="increment">
+		</id>
+		<property column="customerName" name="customerName"/>
+		<property column="customerMobile" name="customerMobile"/>
+		<property column="customerEmail" name="customerEmail"/>
+		<property column="customerAddress" name="customerAddress"/>
+		<property column="customerStatus" name="customerStatus"/>
+		<property column="customerJoinDate" name="customerJoinDate"/>
+		<property column="port" name="port"/>
+	</class>
+</hibernate-mapping>

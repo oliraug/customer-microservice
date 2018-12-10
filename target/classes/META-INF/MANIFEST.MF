@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: eprice
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: olify
+Implementation-Vendor-Id: com.olify
+Build-Jdk: 1.8.0_191
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/eprice
+Created-By: Maven Integration for Eclipse
+
